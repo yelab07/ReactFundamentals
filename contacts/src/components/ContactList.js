@@ -1,19 +1,28 @@
-import "../css/App.css";
 import "../css/index.css";
-const ContactList = (props) => {
-  console.log(props);
+import "../css/App.css";
+const ContactList = ({ contacts, onDeleteContact }) => {
+  // console.log(props);
   return (
     <ol className="contact-list">
-      {props.contacts.map((item) => (
-        <li key={item.name} className="contact-list-item">
+      {contacts.map((contact) => (
+        <li key={contact.name} className="contact-list-item">
           <div
             className="contact-avatar"
-            style={{ backgroundImage: `url(${item.avatarURL})` }}
+            style={{ backgroundImage: `url(${contact.avatarURL})` }}
           ></div>
           <div className="contact-details">
-            <p>{item.name}</p>
-            <p>{item.handle}</p>
+            <p>{contact.name}</p>
+            <p>{contact.handle}</p>
           </div>
+          <button
+            className="contact-remove"
+            // onClick={() => {
+            //   console.log("button clicked");
+            // }}
+            onClick={() => onDeleteContact(contact)}
+          >
+            Remove
+          </button>
         </li>
       ))}
     </ol>
