@@ -1,0 +1,11 @@
+With Controlled Components, React state serves as the "single source of truth" of form data. This is how user input in your ListContacts component ultimately triggers re-renders of the page.
+Controlled Components refer to components that render a form, but the "source of truth" for that form state lives inside of the component state rather than inside of the DOM. The benefits of Controlled Components are:
+
+Instant input validation
+Conditionally enable or disable buttons
+Enforce input formats
+In our ListContacts component, not only does the component render a form, but it also controls what happens in that form based on user input. In this case, event handlers update the component's state with the user's search query. And as we've learned: any changes to React state will cause a re-render on the page, effectively displaying our live search results.
+
+Further Research
+react-devtools on npm
+Forms in the React documentation
