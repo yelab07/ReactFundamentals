@@ -1,0 +1,44 @@
+Why Hooks?
+Whether you're new to React, or had even written React in the past (prior to the release of version 16.8), the concept of hooks in React may sound like a popular, yet mysterious feature nowadays. What exactly are they, and why are they necessary when writing functional components in React? Let's take a closer look.
+
+Barriers to React
+As mentioned in the above, there were quite a few hurdles when it came to learning how to build React applications. For one, there was quite a lot of prerequisite knowledge that you'd have to master beforehand. You'd have to be fairly well-versed in object-oriented programming. Of course, this meant that you'd have to know ES6 class syntax to build stateful components. And on an even more granular level, this meant you'd have to understand how the this keyword worked, and make sure that you'd bind it correctly every time. Not only did this leave the door open to more mistakes, it was simply just a lot of code to write.
+
+Lifecycle and State in Class Components
+Note: This section is for-your-information only; it is not required for you to use this syntax (in fact, you should not use it) when building the applications in this course.
+
+The common way to write components prior to React v16.8 was largely via writing a class (as shown in the previous video). While it may have been less intuitive than simply writing a function, it did provide some useful features.
+
+First, classes had access to component state directly. This meant that there was no need to import a useState hook; we could just define our entire state as an object, like so:
+
+class Contact extends React.Component {
+state = {
+clicked: true,
+};
+
+// ...
+}
+And to set state, we could call this.setState() and pass in a new state object, like:
+
+this.setState({ click: false });
+Along with having direct access to component state, there were also lifecycle methods we could leverage. These methods were automatically bound to the component instance, and React would call these methods naturally at certain times during the life of a component. There were a number of different lifecycle events, but here were some of the more commonly used methods and their associated events:
+
+componentDidMount(), invoked immediately after the component is inserted into the DOM
+componentWillUnmount(), invoked immediately before a component is removed from the DOM
+getDerivedStateFromProps(), invoked after a component is instantiated as well as when it receives brand new props
+To use one of these, you would just add the method in your component, and React would call it automatically as needed. It was an easy way to run some code during different and specific parts of the lifecycle of React components.
+
+Now, this is all fine for class components (which are actually backwards-compatible and can still be used today, despite the past tense in the previous paragraphs), but how would we be able to use these features in the modern functional components that we've written? This is where hooks come in.
+Hooks Allow for Lifecycle and State in Functional Components
+This is the main takeaway for this section of the course. By using hooks, we can access state and other React features (e.g., lifecycle events) in our functional components.
+
+We encourage you to check out the resources below for more information about the motivation and introduction of hooks in React. In the next section, you'll get some more practice with the foundational useState hook that we've worked with so far.
+
+The useEffect Hook
+While we know that functional components don't have access to the lifecycle methods we read about earlier in this lesson, we can still use a special hook that allows us to implement side effects in components: useEffect.
+
+This hook allows us to run special code or custom logic at specific points of a component's lifecycle, including after the component is mounted to the DOM, after the component is updated, and even before the component is destroyed (i.e., unmounted from the DOM).
+
+To use useEffect in a component, we'll first import it from React:
+
+import { useEffect } from "react";
