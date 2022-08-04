@@ -63,3 +63,49 @@ type: ADD_ITEM,
 item: item
 };
 };
+Summary
+In this section, we started creating our store by building out a createStore() function. So far, this function keeps track of the state, and provides a method to get the state and one to keep track of listener functions that will be run whenever the state changes.
+
+In the next section, we'll add a method to handle updating the state.
+
+Let's step back one more time and think about what Redux is all about. The whole goal of Redux is to increase predictability:
+
+Redux is a predictable state container for JavaScript apps.
+
+With this in mind, let's see dig into how we can use actions and our state tree to predictably manage an application's state.
+And we've got our second rule!
+
+The function that returns the new state needs to be a pure function.
+
+So far, our rules are:
+
+Only an event can change the state of the store.
+The function that returns the new state needs to be a pure function.
+A pure function can be a bit theoretical, so we'll take it step by step and explain why a pure function is so powerful and how it helps improve predictability.
+What are Pure Functions?
+Pure functions are integral to how state in Redux applications is updated. By definition, pure functions:
+
+Return the same result if the same arguments are passed in
+Depend solely on the arguments passed into them
+Do not produce side effects, such as API requests and I/O operations
+Let’s check out an example of a pure function, square():
+
+// square() is a pure function
+
+const square = (x) => x \* x;
+square() is a pure function because it outputs the same value every single time, given that the same argument is passed into it. There is no dependence on any other values to produce that result, and we can safely expect just that result to be returned -- no side effects (more on this in a bit!).
+
+On the other hand, let’s check out an example of an impure function, calculateTip():
+
+// calculateTip() is an impure function
+
+const tipPercentage = 0.15;
+
+const calculateTip = (cost) => cost \* tipPercentage;
+calculateTip() calculates and returns a number value. However, it relies on a variable (tipPercentage) that lives outside the function to produce that value. Since it fails one of the requirements of pure functions, calculateTip() is an impure function. However, we could convert this function to a pure function by passing in the outside variable, tipPercentage, as a second argument to this function!
+
+const calculateTip = (cost, tipPercentage = 0.15) => cost \* tipPercentage;
+Why Pure Functions Are Great
+For our purposes, the most important feature of a pure function is that it's predictable. If we have a function that takes in our state and an action that occurred, the function should (if it's pure!) return the exact same result every single time.
+
+This course (and Redux!) is all about predictability!
